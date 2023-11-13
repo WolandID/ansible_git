@@ -14,7 +14,7 @@
     when: RUN_MIGRATE|bool     
     ansible.builtin.shell:
       chdir: "{{ DEPLOY_DIRECTORY }}"
-      cmd: touch migrate.txt
+      cmd: touch migrate1.txt
 
   - name: Run composer
     when: RUN_COMPOSER|bool  
