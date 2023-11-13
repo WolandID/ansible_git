@@ -1,6 +1,6 @@
 ---
 - name: Test pu meter device
-  hosts: "{{ HOSTS }}"
+  hosts: "{{ HostsGroup }}"
   remote_user: jenkins
 
   tasks:
