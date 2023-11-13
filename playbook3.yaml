@@ -1,0 +1,23 @@
+---
+- name: Test pu meter device
+  hosts: "{{ HOSTS }}"
+  remote_user: jenkins
+
+  tasks:
+  - name: Git pull
+    ansible.builtin.git:
+      repo: https://github.com/WolandID/for-jenkins.git
+      dest: "{{ DEPLOY_DIRECTORY }}"
+      version: "{{ GIT_BRANCH }}"
+
+  - name: Run migrate
+    when: RUN_MIGRATE|bool     
+    ansible.builtin.shell:
+      chdir: "{{ DEPLOY_DIRECTORY }}"
+      cmd: touch migrate.txt
+
+  - name: Run composer
+    when: RUN_COMPOSER|bool  
+    ansible.builtin.shell:
+      chdir: "{{ DEPLOY_DIRECTORY }}"
+      cmd: touch composer.txt
